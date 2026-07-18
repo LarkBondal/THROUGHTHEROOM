@@ -1,37 +1,22 @@
-const menuButton = document.getElementById("menuButton");
-const closeButton = document.getElementById("closeButton");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
+const menuButton = document.querySelector("#menuButton");
+const closeButton = document.querySelector("#closeButton");
+const sideMenu = document.querySelector("#sideMenu");
+const menuOverlay = document.querySelector("#menuOverlay");
 
-function openMenu() {
-  sideMenu.classList.add("is-open");
-  menuOverlay.hidden = false;
-  requestAnimationFrame(() => menuOverlay.classList.add("is-visible"));
-  sideMenu.setAttribute("aria-hidden", "false");
-  menuButton.setAttribute("aria-expanded", "true");
-  document.body.classList.add("menu-open");
-  closeButton.focus();
+function setMenu(open) {
+  sideMenu.classList.toggle("is-open", open);
+  sideMenu.setAttribute("aria-hidden", String(!open));
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuOverlay.hidden = !open;
+  document.body.style.overflow = open ? "hidden" : "";
 }
 
-function closeMenu() {
-  sideMenu.classList.remove("is-open");
-  menuOverlay.classList.remove("is-visible");
-  sideMenu.setAttribute("aria-hidden", "true");
-  menuButton.setAttribute("aria-expanded", "false");
-  document.body.classList.remove("menu-open");
-
-  window.setTimeout(() => {
-    menuOverlay.hidden = true;
-  }, 220);
-}
-
-menuButton.addEventListener("click", openMenu);
-closeButton.addEventListener("click", closeMenu);
-menuOverlay.addEventListener("click", closeMenu);
+menuButton.addEventListener("click", () => setMenu(true));
+closeButton.addEventListener("click", () => setMenu(false));
+menuOverlay.addEventListener("click", () => setMenu(false));
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && sideMenu.classList.contains("is-open")) {
-    closeMenu();
-    menuButton.focus();
+  if (event.key === "Escape") {
+    setMenu(false);
   }
 });

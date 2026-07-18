@@ -1,43 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Through The Room landing page" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Through The Room mobile landing page">
   <title>Through The Room</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="landing-page">
     <header class="site-header">
-      <button class="logo-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sideMenu">
-        <img src="assets/TTRLogo.png" alt="" />
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="sideMenu"
+        aria-expanded="false"
+      >
+        <img src="assets/TTRLogo.png" alt="" aria-hidden="true">
       </button>
 
-      <div class="title-lockup" aria-labelledby="heroTitle">
-        <h1 id="heroTitle">Through The Room</h1>
-        <img src="assets/TTRLogo.png" alt="" aria-hidden="true" />
-      </div>
+      <a class="brand-link" href="#" aria-label="Through The Room home">
+        <h1 class="groovy-logo" aria-label="Through The Room">
+          <span class="logo-letter letter-0" aria-hidden="true">T</span>
+          <span class="logo-letter letter-1" aria-hidden="true">H</span>
+          <span class="logo-letter letter-2" aria-hidden="true">R</span>
+          <span class="logo-letter letter-3" aria-hidden="true">O</span>
+          <span class="logo-letter letter-4" aria-hidden="true">U</span>
+          <span class="logo-letter letter-5" aria-hidden="true">G</span>
+          <span class="logo-letter letter-6" aria-hidden="true">H</span>
+          <span class="logo-space" aria-hidden="true"></span>
+          <span class="logo-letter letter-8" aria-hidden="true">T</span>
+          <span class="logo-letter letter-9" aria-hidden="true">H</span>
+          <span class="logo-letter letter-10" aria-hidden="true">E</span>
+          <span class="logo-space" aria-hidden="true"></span>
+          <span class="logo-letter letter-12" aria-hidden="true">R</span>
+          <span class="logo-letter letter-13" aria-hidden="true">O</span>
+          <span class="logo-letter letter-14" aria-hidden="true">O</span>
+          <span class="logo-letter letter-15" aria-hidden="true">M</span>
+        </h1>
+      </a>
 
-      <button class="bag-button" type="button" aria-label="Shopping bag">
-        <span class="bag-icon" aria-hidden="true"></span>
+      <button class="bag-button" type="button" aria-label="Shopping bag, 0 items">
+        <span class="bag-handle" aria-hidden="true"></span>
+        <span class="bag-body" aria-hidden="true"></span>
         <span class="bag-count">0</span>
       </button>
     </header>
 
     <aside class="side-menu" id="sideMenu" aria-hidden="true">
-      <button class="close-button" id="closeButton" type="button" aria-label="Close navigation">×</button>
-      <nav class="side-nav" aria-label="Main navigation">
+      <button class="close-button" id="closeButton" type="button" aria-label="Close navigation menu">
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <nav class="side-nav" aria-label="Primary navigation">
         <a href="#">Product</a>
         <a href="#">Gallery</a>
-        <a href="#">Coming Soon</a>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
       </nav>
     </aside>
 
-    <div class="menu-overlay" id="menuOverlay" hidden></div>
+    <button
+      class="menu-overlay"
+      id="menuOverlay"
+      type="button"
+      aria-label="Close navigation menu"
+      hidden
+    ></button>
 
-    <section class="hero">
-      <a class="instagram-button" href="#" aria-label="Instagram">
+    <section class="hero" aria-label="Through The Room introduction">
+      <a
+        class="instagram-button"
+        href="https://www.instagram.com/throughtheroom?igsh=eTV3cHYxdTh2Z2xp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Through The Room on Instagram"
+      >
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5"></rect>
           <circle cx="12" cy="12" r="4.25"></circle>
