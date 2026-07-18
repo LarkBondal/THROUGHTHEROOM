@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Through The Room landing page" />
+  <title>Through The Room</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="landing-page">
+    <header class="site-header">
+      <button class="logo-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sideMenu">
+        <img src="assets/TTRLogo.png" alt="" />
+      </button>
+
+      <div class="title-lockup" aria-labelledby="heroTitle">
+        <h1 id="heroTitle">Through The Room</h1>
+        <img src="assets/TTRLogo.png" alt="" aria-hidden="true" />
+      </div>
+
+      <button class="bag-button" type="button" aria-label="Shopping bag">
+        <span class="bag-icon" aria-hidden="true"></span>
+        <span class="bag-count">0</span>
+      </button>
+    </header>
+
+    <aside class="side-menu" id="sideMenu" aria-hidden="true">
+      <button class="close-button" id="closeButton" type="button" aria-label="Close navigation">×</button>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a href="#">Product</a>
+        <a href="#">Gallery</a>
+        <a href="#">Coming Soon</a>
+      </nav>
+    </aside>
+
+    <div class="menu-overlay" id="menuOverlay" hidden></div>
+
+    <section class="hero">
+      <a class="instagram-button" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4.25"></circle>
+          <circle class="instagram-dot" cx="17.4" cy="6.7" r="1"></circle>
+        </svg>
+      </a>
+    </section>
+
+    <section class="mission-panel" aria-label="Mission statement placeholder">
+      <p>
+        mission statement mission statement mission statement mission statement
+        mission statement mission statement mission statement mission statement
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
