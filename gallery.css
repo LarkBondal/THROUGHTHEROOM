@@ -1,0 +1,210 @@
+.gallery-stage {
+  position: absolute;
+  inset: calc(var(--safe-top) + 76px) var(--safe-right)
+    calc(var(--safe-bottom) + 82px) var(--safe-left);
+  display: grid;
+  container-type: size;
+  place-items: center;
+}
+
+.gallery-comic {
+  display: grid;
+  width: min(74vw, 600px, calc((100cqh - 64px) * 1.4));
+  justify-items: center;
+  gap: 12px;
+}
+
+.comic-book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1600 / 1138;
+  perspective: 1350px;
+  animation: comic-float 5s ease-in-out infinite;
+}
+
+.comic-page,
+.comic-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px 7px 7px 2px;
+}
+
+.comic-page {
+  overflow: hidden;
+  border: 2px solid #171717;
+  background: #161616;
+  box-shadow: 2px 4px 0 #ddd6c6, 4px 7px 0 #a59d8f, 0 22px 32px #0008;
+}
+
+.comic-page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.comic-cover {
+  border: 1px solid #ffffff38;
+  overflow: hidden;
+  isolation: isolate;
+  background: #838383;
+  box-shadow: inset 0 0 0 5px #ffffff0d;
+  transform-origin: left center;
+  transition: transform 720ms cubic-bezier(0.34, 0.75, 0.3, 1);
+  backface-visibility: hidden;
+}
+
+.comic-cover-art {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(#0002, #0002),
+    url("assets/gallery-room-empty.jpg") center / cover no-repeat;
+  /* Crop to the back wall and floor while keeping the exhibit layers aligned. */
+  transform: translateY(-50%) scale(1.25) translateY(-12%);
+}
+
+.comic-exhibit-frame {
+  position: absolute;
+  top: 29.5%;
+  left: 50%;
+  width: 37.3%;
+  aspect-ratio: 540 / 399;
+  isolation: isolate;
+  transform: translateX(-50%);
+}
+
+.comic-exhibit-frame::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url("assets/gallery-linen.jpg") center / cover;
+  filter: brightness(0.9);
+  mask-image:
+    linear-gradient(90deg, transparent, #000 5%, #000 96%, transparent),
+    linear-gradient(transparent, #000 3%, #000 92%, transparent);
+  mask-composite: intersect;
+  content: "";
+}
+
+.comic-exhibit-frame img {
+  position: absolute;
+  top: 42.4%;
+  left: 50%;
+  width: 55%;
+  mix-blend-mode: multiply;
+  transform: translate(-50%, -50%);
+}
+
+.comic-exhibit-reflection {
+  top: 67%;
+  opacity: 0.17;
+  filter: blur(2.5px);
+  mask-image: linear-gradient(to top, #000 0%, transparent 82%);
+  transform: translateX(-50%) scaleY(-1);
+  pointer-events: none;
+}
+
+.comic-exhibit-label {
+  position: absolute;
+  top: 49%;
+  left: 67%;
+  width: 4%;
+  aspect-ratio: 1.18;
+  background:
+    linear-gradient(#777, #777) 24% 29% / 54% 7% no-repeat,
+    repeating-linear-gradient(#a4a29b 0 12%, transparent 12% 32%)
+      50% 71% / 65% 42% no-repeat,
+    #e6e3dc;
+  box-shadow: 1px 1px 2px #0004;
+}
+
+.gallery-comic.is-open .comic-cover {
+  transform: rotateY(-155deg);
+}
+
+.comic-turn {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid #ffffff54;
+  border-radius: 999px;
+  background: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.comic-turn [aria-hidden] {
+  margin-inline-start: 0.35em;
+}
+
+.comic-turn:hover {
+  background: #292929;
+}
+
+.comic-turn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@keyframes comic-float {
+  0%, 100% { transform: translateY(2px) rotate(-0.25deg); }
+  50% { transform: translateY(-4px) rotate(0.25deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comic-book {
+    animation: none;
+  }
+
+  .comic-cover {
+    transition: none;
+  }
+}
+
+.gallery-stage.is-expanded {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  padding: calc(var(--safe-top) + 56px) calc(var(--safe-right) + 12px)
+    calc(var(--safe-bottom) + 12px) calc(var(--safe-left) + 12px);
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.is-expanded .gallery-comic {
+  width: min(100cqw, calc(100cqh * 1600 / 1138));
+}
+
+.is-expanded .comic-book {
+  animation: none;
+}
+
+.is-expanded .comic-turn {
+  display: none;
+}
+
+.comic-exit {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--safe-top) + 6px);
+  right: calc(var(--safe-right) + 12px);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #ffffff54;
+  border-radius: 50%;
+  background: #111;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.comic-exit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+[data-gallery-hidden] {
+  visibility: hidden;
+}
