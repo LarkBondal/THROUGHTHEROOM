@@ -2,76 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Through The Room mobile landing page">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+  <meta name="description" content="Through The Room landing page">
   <title>Through The Room</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <main class="landing-page">
-    <header class="site-header">
+    <header class="top-controls">
       <button
-        class="menu-button"
+        class="drawer-button"
         id="menuButton"
         type="button"
         aria-label="Open navigation menu"
         aria-controls="sideMenu"
         aria-expanded="false"
       >
-        <img src="assets/TTRLogo.png" alt="" aria-hidden="true">
+        <img src="assets/BuddhaLogo.png?v=6" alt="" aria-hidden="true">
       </button>
 
-      <a class="brand-link" href="#" aria-label="Through The Room home">
-        <h1 class="groovy-logo" aria-label="Through The Room">
-          <span class="logo-letter" style="--y:0.0px; --r:3.59deg; --s:1.104;" aria-hidden="true">T</span>
-          <span class="logo-letter" style="--y:3.25px; --r:4.79deg; --s:1.123;" aria-hidden="true">H</span>
-          <span class="logo-letter" style="--y:5.76px; --r:4.9deg; --s:1.141;" aria-hidden="true">R</span>
-          <span class="logo-letter" style="--y:6.95px; --r:3.89deg; --s:1.155;" aria-hidden="true">O</span>
-          <span class="logo-letter" style="--y:6.55px; --r:1.99deg; --s:1.16;" aria-hidden="true">U</span>
-          <span class="logo-letter" style="--y:4.64px; --r:-0.37deg; --s:1.156;" aria-hidden="true">G</span>
-          <span class="logo-letter" style="--y:1.68px; --r:-2.65deg; --s:1.144;" aria-hidden="true">H</span>
-          <span class="logo-space" aria-hidden="true"></span>
-          <span class="logo-letter" style="--y:-1.68px; --r:-4.32deg; --s:1.126;" aria-hidden="true">T</span>
-          <span class="logo-letter" style="--y:-4.64px; --r:-4.99deg; --s:1.107;" aria-hidden="true">H</span>
-          <span class="logo-letter" style="--y:-6.55px; --r:-4.53deg; --s:1.091;" aria-hidden="true">E</span>
-          <span class="logo-space" aria-hidden="true"></span>
-          <span class="logo-letter" style="--y:-6.95px; --r:-3.03deg; --s:1.082;" aria-hidden="true">R</span>
-          <span class="logo-letter" style="--y:-5.76px; --r:-0.83deg; --s:1.081;" aria-hidden="true">O</span>
-          <span class="logo-letter" style="--y:-3.25px; --r:1.56deg; --s:1.089;" aria-hidden="true">O</span>
-          <span class="logo-letter" style="--y:-0.0px; --r:3.59deg; --s:1.104;" aria-hidden="true">M</span>
-        </h1>
-      </a>
-
-      <button class="bag-button" type="button" aria-label="Shopping bag, 0 items">
-        <span class="bag-handle" aria-hidden="true"></span>
-        <span class="bag-body" aria-hidden="true"></span>
-        <span class="bag-count">0</span>
-      </button>
-    </header>
-
-    <aside class="side-menu" id="sideMenu" aria-hidden="true">
-      <button class="close-button" id="closeButton" type="button" aria-label="Close navigation menu">
-        <span aria-hidden="true">×</span>
-      </button>
-
-      <nav class="side-nav" aria-label="Primary navigation">
-        <a href="#">Product</a>
-        <a href="#">Gallery</a>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-      </nav>
-    </aside>
-
-    <button
-      class="menu-overlay"
-      id="menuOverlay"
-      type="button"
-      aria-label="Close navigation menu"
-      hidden
-    ></button>
-
-    <section class="hero" aria-label="Through The Room introduction">
       <a
         class="instagram-button"
         href="https://www.instagram.com/throughtheroom?igsh=eTV3cHYxdTh2Z2xp"
@@ -85,16 +37,44 @@
           <circle class="instagram-dot" cx="17.4" cy="6.7" r="1"></circle>
         </svg>
       </a>
+
+      <button class="bag-button" type="button" aria-label="Shopping bag, 0 items">
+        <span class="bag-handle" aria-hidden="true"></span>
+        <span class="bag-body" aria-hidden="true"></span>
+        <span class="bag-count">0</span>
+      </button>
+    </header>
+
+    <section class="center-brand" aria-label="Through The Room">
+      <img src="assets/TTRLogo.png?v=6" alt="Through The Room">
     </section>
 
-    <section class="mission-panel" aria-label="Mission statement placeholder">
-      <p>
-        mission statement mission statement mission statement mission statement
-        mission statement mission statement mission statement mission statement
-      </p>
-    </section>
+    <aside class="side-menu" id="sideMenu" aria-hidden="true">
+      <button
+        class="close-button"
+        id="closeButton"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <nav class="side-nav" aria-label="Primary navigation">
+        <a href="#">Products</a>
+        <a href="#">Gallery</a>
+        <a href="#">Coming soon</a>
+      </nav>
+    </aside>
+
+    <button
+      class="menu-overlay"
+      id="menuOverlay"
+      type="button"
+      aria-label="Close navigation menu"
+      hidden
+    ></button>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

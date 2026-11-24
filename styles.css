@@ -3,15 +3,18 @@
 }
 
 :root {
-  --header-height: 78px;
-  --page-padding: 12px;
-  --logo-purple: #6b00d8;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 html,
 body {
+  width: 100%;
   min-height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 body {
@@ -32,92 +35,91 @@ button {
 
 .landing-page {
   position: relative;
+  width: 100%;
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.13), rgba(0, 0, 0, 0.13)),
+    linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
     url("assets/landing_page_bg.jpg") center center / cover no-repeat;
 }
 
-.site-header {
-  position: absolute;
+/* Fixed left / center / right positions at the top. */
+.top-controls {
+  position: fixed;
   z-index: 20;
-  top: 0;
-  left: 0;
+  top: var(--safe-top);
+  left: var(--safe-left);
+  right: var(--safe-right);
   display: grid;
-  width: 100%;
-  height: var(--header-height);
-  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  height: 76px;
+  grid-template-columns: 52px minmax(0, 1fr) 52px;
   align-items: center;
   gap: 10px;
-  padding: 8px var(--page-padding);
+  padding: 8px 12px;
 }
 
-.menu-button,
+.drawer-button,
 .bag-button {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   margin: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 
-.menu-button {
+.drawer-button {
   display: grid;
   place-items: center;
   padding: 0;
   overflow: hidden;
 }
 
-.menu-button img {
+.drawer-button img {
   display: block;
-  width: 40px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
+  max-width: 42px;
+  max-height: 42px;
   object-fit: contain;
+  object-position: center;
 }
 
-.brand-link {
-  display: flex;
-  min-width: 0;
-  height: 62px;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.instagram-button {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-self: center;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.035);
 }
 
-.groovy-logo {
-  display: flex;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  color: #050505;
-  font-family: "Cooper Black", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
-  font-size: clamp(14px, 4.3vw, 20px);
-  font-weight: 900;
-  letter-spacing: -0.055em;
-  line-height: 1;
-  white-space: nowrap;
-  -webkit-text-stroke: 1.45px var(--logo-purple);
-  paint-order: stroke fill;
-  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.35));
+.instagram-button:hover,
+.instagram-button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.11);
+  color: #fff;
 }
 
-.logo-letter {
-  display: inline-block;
-  transform: translateY(var(--y)) rotate(var(--r)) scaleY(var(--s));
-  transform-origin: center bottom;
+.instagram-button svg {
+  width: 29px;
+  height: 29px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
 }
 
-.logo-space {
-  display: inline-block;
-  flex: 0 0 clamp(7px, 2vw, 10px);
+.instagram-button .instagram-dot {
+  fill: currentColor;
+  stroke: none;
 }
 
 .bag-button {
@@ -126,8 +128,8 @@ button {
 
 .bag-body {
   position: absolute;
-  top: 14px;
-  left: 8px;
+  top: 13px;
+  left: 9px;
   width: 25px;
   height: 23px;
   border: 2px solid #fff;
@@ -137,8 +139,8 @@ button {
 .bag-handle {
   position: absolute;
   z-index: 1;
-  top: 7px;
-  left: 14px;
+  top: 6px;
+  left: 15px;
   width: 13px;
   height: 13px;
   border: 2px solid #fff;
@@ -157,53 +159,38 @@ button {
   text-align: center;
 }
 
-.hero {
+/*
+  The original TTR artwork now occupies the open wall space:
+  below the torn fabric and above/between the lower brick partitions.
+*/
+.center-brand {
+  position: fixed;
+  z-index: 12;
+  top: 24svh;
+  left: 50%;
   display: flex;
-  min-height: 100svh;
-  align-items: flex-start;
+  width: min(70vw, 340px);
+  height: 34svh;
+  align-items: center;
   justify-content: center;
-  padding-top: 154px;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
-.instagram-button {
-  display: grid;
-  width: 58px;
-  height: 58px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.82);
-  text-decoration: none;
-  backdrop-filter: blur(4px);
-  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.035);
-}
-
-.instagram-button:hover,
-.instagram-button:focus-visible {
-  background: rgba(255, 255, 255, 0.11);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.46);
-}
-
-.instagram-button svg {
-  width: 29px;
-  height: 29px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-}
-
-.instagram-button .instagram-dot {
-  fill: currentColor;
-  stroke: none;
+.center-brand img {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.18));
 }
 
 .mission-panel {
-  position: absolute;
-  z-index: 5;
-  bottom: 0;
-  left: 0;
+  position: fixed;
+  z-index: 10;
+  left: var(--safe-left);
+  bottom: var(--safe-bottom);
   width: min(58vw, 230px);
   min-height: 16.66svh;
   padding: 24px 18px 20px;
@@ -213,12 +200,6 @@ button {
   backdrop-filter: blur(3px);
 }
 
-.mission-panel p {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.55;
-  text-transform: lowercase;
-}
 
 .side-menu {
   position: fixed;
@@ -227,7 +208,7 @@ button {
   left: 0;
   width: min(78vw, 310px);
   height: 100svh;
-  padding: 26px 24px;
+  padding: calc(26px + var(--safe-top)) 24px 26px;
   background: rgba(10, 10, 10, 0.96);
   box-shadow: 18px 0 45px rgba(0, 0, 0, 0.32);
   transform: translateX(-105%);
@@ -259,7 +240,9 @@ button {
   padding: 19px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
+  font-weight: 400;
   letter-spacing: 0.03em;
   text-decoration: none;
   text-transform: uppercase;
@@ -279,56 +262,42 @@ button {
   display: none;
 }
 
-/* Explicit mobile tuning so the groovy heading remains visible and does not overlap either icon. */
-@media (max-width: 480px) {
-  .site-header {
-    grid-template-columns: 46px minmax(0, 1fr) 46px;
+@media (max-width: 430px) {
+  .top-controls {
+    grid-template-columns: 50px minmax(0, 1fr) 50px;
     gap: 8px;
     padding-inline: 10px;
   }
 
-  .brand-link {
-    min-width: 0;
-    overflow: hidden;
+  .center-brand {
+    top: 23svh;
+    width: 74vw;
+    height: 35svh;
   }
 
-  .groovy-logo {
-    max-width: 100%;
-    font-size: clamp(13px, 4.1vw, 17px);
-    letter-spacing: -0.065em;
-    transform: scaleX(0.97);
-  }
-
-  .logo-space {
-    flex-basis: 6px;
-  }
-
-  .menu-button img {
-    width: 37px;
-    height: 31px;
+  .center-brand img {
+    width: min(100%, 285px);
   }
 }
 
-@media (max-width: 360px) {
-  .site-header {
-    grid-template-columns: 42px minmax(0, 1fr) 42px;
+@media (max-width: 375px) {
+  .top-controls {
+    grid-template-columns: 46px minmax(0, 1fr) 46px;
     gap: 6px;
     padding-inline: 8px;
   }
 
-  .groovy-logo {
-    font-size: 12px;
-    letter-spacing: -0.075em;
-    transform: scaleX(0.94);
+  .drawer-button img {
+    width: 38px;
+    height: 38px;
   }
 
-  .logo-space {
-    flex-basis: 4px;
+  .center-brand {
+    width: 76vw;
   }
 
-  .menu-button img {
-    width: 34px;
-    height: 29px;
+  .center-brand img {
+    width: min(100%, 255px);
   }
 }
 
@@ -339,12 +308,17 @@ button {
     margin: 24px auto;
   }
 
-  .side-menu {
-    width: 310px;
+  .top-controls {
+    position: absolute;
+    width: 430px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
   }
 
-  .groovy-logo {
-    font-size: 19px;
+  .center-brand,
+  .mission-panel {
+    position: absolute;
   }
 }
 
