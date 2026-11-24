@@ -14,7 +14,6 @@ body {
   width: 100%;
   min-height: 100%;
   margin: 0;
-  overflow: hidden;
 }
 
 body {
@@ -33,12 +32,17 @@ button {
   font: inherit;
 }
 
-.landing-page {
+.site-page {
   position: relative;
   width: 100%;
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
+}
+
+.landing-page {
   background:
     linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
     url("assets/landing_page_bg.jpg") center center / cover no-repeat;
@@ -46,7 +50,7 @@ button {
 
 /* Fixed left / center / right positions at the top. */
 .top-controls {
-  position: fixed;
+  position: absolute;
   z-index: 20;
   top: var(--safe-top);
   left: var(--safe-left);
@@ -164,13 +168,13 @@ button {
   below the torn fabric and above/between the lower brick partitions.
 */
 .center-brand {
-  position: fixed;
+  position: absolute;
   z-index: 12;
-  top: 24svh;
+  top: max(calc(var(--safe-top) + 76px), 24%);
   left: 50%;
   display: flex;
-  width: min(70vw, 340px);
-  height: 34svh;
+  width: min(76%, clamp(300px, 34vw, 440px));
+  height: min(34%, calc(100% - var(--safe-top) - var(--safe-bottom) - 76px));
   align-items: center;
   justify-content: center;
   transform: translateX(-50%);
@@ -179,36 +183,23 @@ button {
 
 .center-brand img {
   display: block;
-  width: min(100%, 300px);
+  width: 100%;
   height: auto;
   max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.18));
 }
 
-.mission-panel {
-  position: fixed;
-  z-index: 10;
-  left: var(--safe-left);
-  bottom: var(--safe-bottom);
-  width: min(58vw, 230px);
-  min-height: 16.66svh;
-  padding: 24px 18px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.34);
-  border-right: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(3px);
-}
-
-
 .side-menu {
-  position: fixed;
+  position: absolute;
   z-index: 50;
   top: 0;
   left: 0;
   width: min(78vw, 310px);
-  height: 100svh;
-  padding: calc(26px + var(--safe-top)) 24px 26px;
+  height: 100%;
+  overflow-y: auto;
+  padding: calc(26px + var(--safe-top)) 24px calc(26px + var(--safe-bottom))
+    calc(24px + var(--safe-left));
   background: rgba(10, 10, 10, 0.96);
   box-shadow: 18px 0 45px rgba(0, 0, 0, 0.32);
   transform: translateX(-105%);
@@ -249,7 +240,7 @@ button {
 }
 
 .menu-overlay {
-  position: fixed;
+  position: absolute;
   z-index: 40;
   inset: 0;
   width: 100%;
@@ -270,13 +261,8 @@ button {
   }
 
   .center-brand {
-    top: 23svh;
-    width: 74vw;
-    height: 35svh;
-  }
-
-  .center-brand img {
-    width: min(100%, 285px);
+    top: max(calc(var(--safe-top) + 76px), 23%);
+    width: min(74%, 285px);
   }
 }
 
@@ -293,32 +279,7 @@ button {
   }
 
   .center-brand {
-    width: 76vw;
-  }
-
-  .center-brand img {
-    width: min(100%, 255px);
-  }
-}
-
-@media (min-width: 700px) {
-  .landing-page {
-    width: 430px;
-    min-height: 900px;
-    margin: 24px auto;
-  }
-
-  .top-controls {
-    position: absolute;
-    width: 430px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-
-  .center-brand,
-  .mission-panel {
-    position: absolute;
+    width: min(76%, 255px);
   }
 }
 
