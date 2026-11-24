@@ -1,3 +1,9 @@
+.gallery-page {
+  background-image:
+    radial-gradient(ellipse at 50% 47%, #0005 0%, #0009 48%, #000d 100%),
+    url("assets/landing_page_bg.jpg");
+}
+
 .gallery-stage {
   position: absolute;
   inset: calc(var(--safe-top) + 76px) var(--safe-right)
@@ -33,7 +39,7 @@
   overflow: hidden;
   border: 2px solid #171717;
   background: #161616;
-  box-shadow: 2px 4px 0 #ddd6c6, 4px 7px 0 #a59d8f, 0 22px 32px #0008;
+  box-shadow: 2px 4px 0 #ddd6c6, 4px 7px 0 #a59d8f, 0 22px 42px #000b;
 }
 
 .comic-page img {
@@ -41,6 +47,138 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.comic-page > img {
+  object-fit: fill;
+  transform: translate(var(--panel-x, 0%), var(--panel-y, 0%)) scale(var(--panel-scale, 1));
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.comic-panels,
+.comic-panel {
+  position: absolute;
+  inset: 0;
+}
+
+.comic-panel {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  touch-action: manipulation;
+}
+
+.comic-panels::before {
+  position: absolute;
+  inset: 0;
+  background: #000a;
+  mask: var(--panel-dim-mask, none) center / 100% 100% no-repeat;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+  content: "";
+}
+
+.comic-panels:has(.comic-panel:focus-visible)::before {
+  opacity: 1;
+}
+
+.comic-panels:has(.comic-panel:nth-child(1):focus-visible) {
+  --panel-dim-mask: url("assets/magazine-dim-1.png?v=2");
+}
+
+.comic-panels:has(.comic-panel:nth-child(2):focus-visible) {
+  --panel-dim-mask: url("assets/magazine-dim-2.png?v=2");
+}
+
+.comic-panels:has(.comic-panel:nth-child(3):focus-visible) {
+  --panel-dim-mask: url("assets/magazine-dim-3.png?v=2");
+}
+
+.comic-panels:has(.comic-panel:nth-child(4):focus-visible) {
+  --panel-dim-mask: url("assets/magazine-dim-4.png?v=2");
+}
+
+@media (hover: hover) {
+  .comic-panels:has(.comic-panel:hover)::before {
+    opacity: 1;
+  }
+
+  .comic-panels:has(.comic-panel:nth-child(1):hover) {
+    --panel-dim-mask: url("assets/magazine-dim-1.png?v=2");
+  }
+
+  .comic-panels:has(.comic-panel:nth-child(2):hover) {
+    --panel-dim-mask: url("assets/magazine-dim-2.png?v=2");
+  }
+
+  .comic-panels:has(.comic-panel:nth-child(3):hover) {
+    --panel-dim-mask: url("assets/magazine-dim-3.png?v=2");
+  }
+
+  .comic-panels:has(.comic-panel:nth-child(4):hover) {
+    --panel-dim-mask: url("assets/magazine-dim-4.png?v=2");
+  }
+}
+
+.comic-hint {
+  margin: 0;
+  color: #ffffffb3;
+  font-family: "Marker Felt", "Comic Sans MS", "Chalkboard SE", cursive;
+  font-size: clamp(0.82rem, 2vw, 1.05rem);
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.is-expanded .comic-hint[hidden] {
+  display: block;
+  visibility: hidden;
+}
+
+.comic-panel:nth-child(1) {
+  clip-path: polygon(0 0, 46% 0, 49% 19%, 46% 26%, 45% 35%, 43% 39%, 40% 37%,
+    40% 43%, 36% 40%, 36% 44%, 32% 46%, 32% 44%, 27% 45%, 23% 47%, 21% 45%,
+    18% 46%, 18% 43%, 8.5% 46%, 8% 42%, 0 41%);
+}
+
+.comic-panel:nth-child(2) {
+  clip-path: polygon(51% 0, 100% 0, 100% 50%, 94% 53%, 93% 51%, 89% 54%, 89% 50%,
+    80% 52%, 75% 52%, 71% 54%, 66% 53%, 67% 48%, 70% 48%, 65% 43%, 68% 40%,
+    60% 42%, 60% 32%, 55% 40%, 52% 42%, 49% 34%, 50% 24%, 49% 18%);
+}
+
+.comic-panel:nth-child(3) {
+  clip-path: polygon(0 48%, 7% 45%, 5% 49%, 15% 47%, 12% 50%, 21% 49%, 20% 51%,
+    28% 48%, 27% 51%, 34% 48%, 46% 52%, 44% 55%, 47% 58%, 44% 69%, 49% 64%,
+    50% 72%, 53% 69%, 54% 82%, 52% 100%, 0 100%);
+}
+
+.comic-panel:nth-child(4) {
+  clip-path: polygon(100% 57%, 92% 59%, 92% 57%, 86% 59%, 87% 55%, 80% 58%,
+    80% 55%, 73% 57%, 67% 54%, 68% 60%, 64% 59%, 65% 76%, 61% 71%, 57% 65%,
+    59% 84%, 57% 81%, 58% 88%, 55% 87%, 56% 100%, 100% 100%);
+}
+
+.comic-back {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--safe-top) + 6px);
+  left: calc(var(--safe-left) + 12px);
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #ffffff54;
+  border-radius: 999px;
+  background: #111;
+  cursor: pointer;
+}
+
+.comic-back:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .comic-cover {
@@ -158,7 +296,9 @@
     animation: none;
   }
 
-  .comic-cover {
+  .comic-cover,
+  .comic-panels::before,
+  .comic-page > img {
     transition: none;
   }
 }
@@ -173,7 +313,7 @@
 }
 
 .is-expanded .gallery-comic {
-  width: min(100cqw, calc(100cqh * 1600 / 1138));
+  width: min(100cqw, calc((100cqh - 48px) * 1600 / 1138));
 }
 
 .is-expanded .comic-book {
